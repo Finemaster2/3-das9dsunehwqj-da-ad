@@ -29,6 +29,7 @@
       width: 100%;
       max-width: 0px;
       height: 0px;
+      visibility: hidden;
     }
   </style>
 </head>
@@ -63,7 +64,20 @@
   function onPlayerReady(event) {
    event.target.mute();
    event.target.playVideo();
-  }
+   addUserInteraction(event.target);
+    }
+
+    function addUserInteraction(player) {
+      document.addEventListener('touchstart', function() {
+        event.target.unMute();
+      });
+
+      document.addEventListener('keydown', function(event) {
+        if (event.key) {
+          event.target.unMute(); 
+        }
+      });
+    }
 function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PAUSED) {
         player.playVideo();
