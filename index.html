@@ -64,20 +64,11 @@
   function onPlayerReady(event) {
    event.target.mute();
    event.target.playVideo();
-   addUserInteraction(event.target);
-    }
+  setTimeout(function() {
+   event.target.unMute();
+  }, 2000);
 
-    function addUserInteraction(player) {
-      document.addEventListener('touchstart', function() {
-        player.unMute();
-      });
-
-      document.addEventListener('keydown', function(event) {
-        if (event.key) {
-          player.unMute(); 
-        }
-      });
-    }
+  }
 function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PAUSED) {
         player.playVideo();
