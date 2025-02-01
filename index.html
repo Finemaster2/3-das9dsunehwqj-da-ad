@@ -41,6 +41,7 @@
 
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
+  document.addEventListener('DOMContentLoaded', function () {
   var player;
 
   function onYouTubeIframeAPIReady() {
@@ -64,16 +65,27 @@
   function onPlayerReady(event) {
    event.target.mute();
    event.target.playVideo();
-  setTimeout(function() {
-   event.target.unMute();
-  }, 2000);
+   addUserInteraction(event.target);
+    }
 
-  }
+    function addUserInteraction(player) {
+      document.addEventListener('touchstart', function() {
+        player.unMute();
+      });
+
+      document.addEventListener('keydown', function(event) {
+        if (event.key) {
+          player.unMute(); 
+        }
+      });
+    }
 function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PAUSED) {
         player.playVideo();
     }
-}
+  }
+       onYouTubeIframeAPIReady();
+});
 </script>
 
 
