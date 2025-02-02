@@ -42,7 +42,6 @@
 
     
 
-  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
     var player;
 
@@ -59,6 +58,14 @@
         }
       });
     }
+    window.addEventListener('load', function() {
+      if (!window.YT) {
+        // If YT (YouTube API) is not loaded, re-load the API
+        const script = document.createElement('script');
+        script.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(script);
+      }
+    });
 
     function onPlayerReady(event) {
     event.target.mute();
