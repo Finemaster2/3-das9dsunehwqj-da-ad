@@ -12,14 +12,14 @@
           background-repeat: no-repeat;
           height: 100vh;
           margin: 0;
-       }
+      }
 
     .video-container {
       display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-
 
     .video-wrapper {
       margin: 5px;
@@ -27,71 +27,71 @@
 
     iframe {
       width: 100%;
-      max-width: 0px;
-      height: 0px;
+      max-width: 600px;
+      height: 338px;
       visibility: hidden;
+      }
+    
+    .fullscreen-button {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      z-index: 10;
+      display: none;
     }
   </style>
 </head>
 <body>
 
   <div class="video-container">
+    <div id="player"></div>
+  </div>
 
-  <div id="player"></div>
+    <button class="fullscreen-button" onclick="unmuteVideo()"></button>
 
-<script src="https://www.youtube.com/iframe_api"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-  var player;
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    var player;
 
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-      videoId: 'jmPcXCzNUmw',
-      playerVars: {
-          fs: 0,
-          modestbranding: 1,
-          controls: 0,
-          rel: 0,
-          showinfo: 0,
-          
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        videoId: 'jmPcXCzNUmw',
+        playerVars: {
+            fs: 0,
+            modestbranding: 1,
+            controls: 0,
+            rel: 0,
+            showinfo: 0,
         },
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
-  }
-
-  function onPlayerReady(event) {
-   event.target.mute();
-   event.target.playVideo();
-   addUserInteraction(event.target);
-    setTimeout(function() {
-          location.reload();  // Reload the page after 10 seconds
-        }, 10000);
-    }
-
-    function addUserInteraction(player) {
-      document.addEventListener('touchstart', function() {
-        player.unMute();
-      });
-
-      document.addEventListener('keydown', function(event) {
-        if (event.key) {
-          player.unMute(); 
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
         }
       });
     }
-function onPlayerStateChange(event) {
-    if (event.data === YT.PlayerState.PAUSED) {
-        player.playVideo();
+
+    function onPlayerReady(event) {
+      event.target.mute();
+      event.target.playVideo();
+      
+      document.querySelector('.fullscreen-button').style.display = 'block';
+
     }
-  }
-       onYouTubeIframeAPIReady();
-});
-</script>
 
-
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.PAUSED) {
+        player.playVideo();
+      }
+    }
+    function unmuteVideo() {
+      player.unMute();
+      document.querySelector('.fullscreen-button').style.display = 'none';
+    }
+  </script>
 
 </body>
 </html>
