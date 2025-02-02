@@ -53,21 +53,21 @@
             controls: 0,
             rel: 0,
             showinfo: 0,
-        },
+        }
         events: {
           'onReady': onPlayerReady,
           'onStateChange': onPlayerStateChange
         }
       });
-    }
+    
 
     function onPlayerReady(event) {
-      event.target.mute();
-      event.target.playVideo();
-      
-     
-
+    event.target.mute();
+    event.target.playVideo();
     }
+    
+      
+      
 
     function onPlayerStateChange(event) {
       if (event.data === YT.PlayerState.PAUSED) {
