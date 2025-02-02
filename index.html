@@ -6,7 +6,7 @@
   <title>Sahaja Yoga Bhajans Non-Stop</title>
   <style>
       body {
-          background-image: url('Untitleddesign.png');
+          background-image: url('https://i.imghippo.com/files/catb8978wdM.png');
           background-size: cover;
           background-position: left center;
           background-repeat: no-repeat;
@@ -31,7 +31,7 @@
       height: 338px;
       visibility: hidden;
       }
-    
+
     .fullscreen-button {
       position: absolute;
       top: 0;
@@ -43,6 +43,37 @@
       z-index: 10;
       display: none;
     }
+
+    .click-prompt {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translate(-50%, -100%);
+      font-size: 25px;
+      color: Orange;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 0px 10px;
+      border-radius: 50px;
+      z-index: 20;
+      line-height: 1.4;
+      white-space: nowrap;
+      text-rendering: optimizeLegibility;
+  
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+
+     font-family: 'Merriweather', serif;
+    }
+
+    .click-prompt span {
+      display: inline;
+      font-weight: bold;
+    }
+
+    .color1 {color: #FF9933;}
+    .color2 {color: #1999F9;}
+    .color3 {color: #D3D3D3;}
+    .color4 {color: #138808;}
   </style>
 </head>
 <body>
@@ -52,6 +83,14 @@
   </div>
 
     <button class="fullscreen-button" onclick="unmuteVideo()"></button>
+
+  <div class="click-prompt" id="clickPrompt">
+    <span class="color1">C</span><span class="color3">l</span><span class="color2">i</span><span class="color3">c</span><span class="color4">k</span>
+    <span class="color1">a</span><span class="color3">n</span><span class="color2">y</span><span class="color3">w</span><span class="color4">h</span><span class="color1">e</span><span class="color3">r</span><span class="color2">e</span>
+    <span class="color3">t</span><span class="color4">o</span>
+    <span class="color1">l</span><span class="color3">i</span><span class="color2">s</span><span class="color3">t</span><span class="color4">e</span><span class="color1">n</span>
+    <span class="color3">!</span>
+  </div>
 
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
@@ -88,8 +127,9 @@
       }
     }
     function unmuteVideo() {
-      player.unMute();
+      player.unMute(); // Unmute the video
       document.querySelector('.fullscreen-button').style.display = 'none';
+      document.getElementById('clickPrompt').style.display = 'none';
     }
   </script>
 
