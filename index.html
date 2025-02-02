@@ -32,7 +32,9 @@
 
       }
 
-    
+    </style>
+</head>
+<body>
 
   <div class="video-container">
     <div id="player"></div>
@@ -53,13 +55,13 @@
             controls: 0,
             rel: 0,
             showinfo: 0,
-        }
+        },
         events: {
           'onReady': onPlayerReady,
           'onStateChange': onPlayerStateChange
         }
       });
-    
+    }
 
     function onPlayerReady(event) {
     event.target.mute();
